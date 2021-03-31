@@ -22,19 +22,13 @@
     <!-- Custom styles for this template-->
     <link href="{% static '/css/sb-admin-2.min.css' %}" rel="stylesheet">
 
-    <!-- FontAwesome Icons -->
-    <script src="{% static 'https://kit.fontawesome.com/d0715debc1.js' %}" crossorigin="anonymous"></script>
-
 </head>
 
 <body id="page-top">
-
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'home' %}">
                 <div class="sidebar-brand-icon rotate-n-15">
@@ -179,9 +173,9 @@
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
+                                <label class="dropdown-header">
                                     Alerts Center
-                                </h6>
+                                </label>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">
                                         <div class="icon-circle bg-primary">
@@ -230,9 +224,9 @@
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
+                                <label class="dropdown-header">
                                     Message Center
-                                </h6>
+                                </label>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
                                         <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="">
@@ -285,9 +279,7 @@
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
                         </li>
-
                     </ul>
-
                 </nav>
                 <!-- End of Topbar -->
 
@@ -295,7 +287,6 @@
                 <div class="container-fluid">
                     <!-- Content Row -->
                     <div class="row">
-
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
@@ -384,31 +375,45 @@
                     </div>
 
                     <!-- Content Row -->
-
                     <div class="row">
-
                         <!-- Area Chart -->
                         <div class="col-xl-12 col-lg-7">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                    <label class="m-0 font-weight-bold text-primary">Create customer</label>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-area">
-
-                                    </div>
+                                    <form method="post" action="">
+                                        {% csrf_token %}
+                                        <div class="mb-3">
+                                            <label class="form-label" for="customer_name">Customer name</label>
+                                            {{customer.customer_name}}
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="customer_gender">Select gender</label>
+                                            {{customer.customer_gender}}
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="customer_dob">Date of birth</label>
+                                            {{customer.customer_dob}}
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="customer_points">Points</label>
+                                            {{customer.customer_points}}
+                                        </div>
+                                        <div class="mb-3">
+                                            <input class="btn btn-info" type="submit" name="Create customer">
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
 
@@ -421,10 +426,8 @@
                 </div>
             </footer>
             <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
-
     </div>
     <!-- End of Page Wrapper -->
 
@@ -449,6 +452,9 @@
     <!-- Page level custom scripts -->
     <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
     <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+
+    <!-- FontAwesome Icons -->
+    <script src="https://kit.fontawesome.com/d0715debc1.js" crossorigin="anonymous"></script>
 
 </body>
 

@@ -14,9 +14,9 @@ class Product(models.Model):
 
 class Customer(models.Model):
     GENDER_CHOICES = (
-        ('M', 'Male'),
-        ('F', 'Female'),
-        ('others', 'Others'),
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Others', 'Others'),
     )
     # customer_id = models.CharField(max_length=10)
     customer_name = models.CharField(max_length=255)
