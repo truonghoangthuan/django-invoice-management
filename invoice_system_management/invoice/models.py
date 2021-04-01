@@ -37,7 +37,7 @@ class InvoiceDetail(models.Model):
 
 class Invoice(models.Model):
     invoice_id = models.ForeignKey(InvoiceDetail, on_delete=models.CASCADE)
-    invoice_date = models.DateField(auto_now_add=True)
+    invoice_date = models.DateField()
     invoice_total = models.FloatField()
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
 

@@ -382,23 +382,27 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <label class="m-0 font-weight-bold text-primary">Create product</label>
+                                    <label class="m-0 font-weight-bold text-primary">Create invoice</label>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <form method="post" action="">
                                         {% csrf_token %}
                                         <div class="mb-3">
-                                            <label class="form-label" for="customer_name">Product name</label>
-                                            {{product.product_name}}
+                                            <label class="form-label" for="customer_name">Invoice ID</label>
+                                            {{invoice.invoice_id}}
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="customer_gender">Price</label>
-                                            {{product.product_price}}
+                                            <label class="form-label" for="customer_name">Customer name</label>
+                                            {{invoice.customer_id}}
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="customer_dob">Unit</label>
-                                            {{product.product_unit}}
+                                            <label class="form-label" for="customer_name">Date</label>
+                                            {{invoice.invoice_date}}
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="customer_name">Total</label>
+                                            {{invoice.invoice_total}}
                                         </div>
                                         <div class="mb-3">
                                             <input class="btn btn-info" type="submit" name="Create customer">

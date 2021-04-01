@@ -61,3 +61,17 @@ def create_invoice_detail(request):
     context = {'invoiceDetail': invoiceDetail}
 
     return render(request, 'invoice/create_invoice_detail.html', context)
+
+# Invoice
+def create_invoice(request):
+    invoice = InvoiceForm()
+
+    if request.method == 'POST':
+        form = InvoiceForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('create_invoice')
+
+    context = {'invoice': invoice}
+
+    return render(request, 'invoice/create_invoice.html', context)
