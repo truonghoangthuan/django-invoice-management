@@ -58,3 +58,22 @@ class CustomerForm(forms.ModelForm):
                 'placeholder': 'Points of the customer'
             })
         }
+
+class InvoiceDetailForm(forms.ModelForm):
+    class Meta:
+        model = InvoiceDetail
+        fields = [
+            'invoice_detail_product_id',
+            'invoice_detail_product_amount',
+        ]
+        widgets = {
+            'invoice_detail_product_id': forms.Select(attrs={
+                'class': 'form-control',
+                'id': 'product_name',
+            }),
+            'invoice_detail_product_amount': forms.TextInput(attrs={
+                'class': 'form-control',
+                'id': 'product_price',
+                'placeholder': 'Enter amount'
+            })
+        }

@@ -9,7 +9,7 @@ class Product(models.Model):
     product_unit = models.CharField(max_length=255)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.product_name)
 
 
 class Customer(models.Model):
@@ -25,7 +25,7 @@ class Customer(models.Model):
     customer_points = models.IntegerField()
 
     def __str__(self):
-        return str(self.id)
+        return str(self.customer_name)
 
 class InvoiceDetail(models.Model):
     # invoice_detail_id = models.CharField(max_length=10)
