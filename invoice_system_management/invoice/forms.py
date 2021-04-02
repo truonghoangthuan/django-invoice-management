@@ -14,17 +14,17 @@ class ProductForm(forms.ModelForm):
             'product_name': forms.TextInput(attrs={
                 'class': 'form-control',
                 'id': 'product_name',
-                'placeholder': 'Laptop'
+                'placeholder': 'Laptop',
             }),
             'product_price': forms.NumberInput(attrs={
                 'class': 'form-control',
                 'id': 'product_price',
-                'placeholder': '1000'
+                'placeholder': '1000',
             }),
             'product_unit': forms.TextInput(attrs={
                 'class': 'form-control',
                 'id': 'product_unit',
-                'placeholder': 'PCS'
+                'placeholder': 'PCS',
             }),
         }
 
@@ -36,27 +36,27 @@ class CustomerForm(forms.ModelForm):
             'customer_name',
             'customer_gender',
             'customer_dob',
-            'customer_points'
+            'customer_points',
         ]
         widgets = {
             'customer_name': forms.TextInput(attrs={
                 'class': 'form-control',
                 'id': 'customer_name',
-                'placeholder': 'Nguyen Van A'
+                'placeholder': 'Nguyen Van A',
             }),
             'customer_gender': forms.Select(attrs={
                 'class': 'form-control',
-                'id': 'customer_gender'
+                'id': 'customer_gender',
             }),
             'customer_dob': forms.DateInput(attrs={
                 'class': 'form-control',
                 'id': 'customer_dob',
-                'placeholder': '2000-01-01'
+                'placeholder': '2000-01-01',
             }),
             'customer_points': forms.TextInput(attrs={
                 'class': 'form-control',
                 'id': 'customer_points',
-                'placeholder': 'Points of the customer'
+                'placeholder': 'Points of the customer',
             })
         }
 
@@ -76,7 +76,8 @@ class InvoiceDetailForm(forms.ModelForm):
             'invoice_detail_product_amount': forms.TextInput(attrs={
                 'class': 'form-control',
                 'id': 'invoice_detail_product_amount',
-                'placeholder': 'Enter amount'
+                'placeholder': 'Enter amount',
+                'type': 'number',
             })
         }
 
@@ -91,10 +92,10 @@ class InvoiceForm(forms.ModelForm):
             'invoice_total',
         ]
         widgets = {
-            'invoice_id': forms.Select(attrs={
-                'class': 'form-control',
-                'id': 'invoice_id',
-            }),
+            # 'invoice_id': forms.Select(attrs={
+            #     'class': 'form-control',
+            #     'id': 'invoice_id',
+            # }),
             'customer_id': forms.Select(attrs={
                 'class': 'form-control',
                 'id': 'customer_id',
@@ -102,11 +103,13 @@ class InvoiceForm(forms.ModelForm):
             'invoice_date': forms.DateInput(attrs={
                 'class': 'form-control',
                 'id': 'invoice_date',
-                'placeholder': 'Enter date create'
+                'placeholder': 'Enter date create',
+                'type': 'date',
             }),
             'invoice_total': forms.TextInput(attrs={
                 'class': 'form-control',
                 'id': 'invoice_total',
-                'placeholder': 'Total bill'
+                'placeholder': 'Total bill',
+                'type': 'number',
             }),
         }

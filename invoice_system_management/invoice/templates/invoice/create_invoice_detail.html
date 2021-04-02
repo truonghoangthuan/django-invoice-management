@@ -13,13 +13,29 @@
             <div class="card-body">
                 <form method="post" action="">
                     {% csrf_token %}
+                    <!-- <div class="mb-3">
+                        <label class="form-label" for="customer_name">Invoice ID</label>
+                        {{invoice.invoice_id}}
+                    </div> -->
                     <div class="mb-3">
-                        <label class="form-label" for="customer_name">Product ID</label>
+                        <label class="form-label" for="customer_name">Date</label>
+                        {{invoice.invoice_date}}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="customer_name">Customer name</label>
+                        {{invoice.customer_id}}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="customer_name">Product name</label>
                         {{invoiceDetail.invoice_detail_product_id}}
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="customer_gender">Amounts</label>
                         {{invoiceDetail.invoice_detail_product_amount}}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="customer_name">Total</label>
+                        {{invoice.invoice_total}}
                     </div>
                     <div class="mb-3">
                         <input class="btn btn-info" type="submit" name="Create customer">
