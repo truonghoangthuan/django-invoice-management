@@ -5,18 +5,37 @@ from .models import *
 
 
 # Create your views here.
+def base(request):
+    total_product = Product.objects.count()
+    total_customer = Customer.objects.count()
+
+    context = {
+        'total_product': total_product,
+        'total_customer': total_customer
+    }
+
+    return render(request, 'invoice/base/base.html', context)
+
+# Home view
+
+
 def index(request):
     total_product = Product.objects.count()
     total_customer = Customer.objects.count()
 
     context = {
         'total_product': total_product,
-        'total_customer': total_customer}
-
+        'total_customer': total_customer
+    }
     return render(request, 'invoice/index.html', context)
 
-# Product
+# Product view
+
+
 def create_product(request):
+    total_product = Product.objects.count()
+    total_customer = Customer.objects.count()
+
     product = ProductForm()
 
     if request.method == 'POST':
@@ -25,18 +44,36 @@ def create_product(request):
             form.save()
             return redirect('create_product')
 
-    context = {'product': product}
+    context = {
+        'total_product': total_product,
+        'total_customer': total_customer,
+        'product': product
+    }
 
     return render(request, 'invoice/create_product.html', context)
 
 
 def view_product(request):
+    total_product = Product.objects.count()
+    total_customer = Customer.objects.count()
+
     product = Product.objects.all()
-    context = {'product': product}
+
+    context = {
+        'total_product': total_product,
+        'total_customer': total_customer,
+        'product': product
+    }
+
     return render(request, 'invoice/view_product.html', context)
 
-# Customer
+# Customer view
+
+
 def create_customer(request):
+    total_product = Product.objects.count()
+    total_customer = Customer.objects.count()
+
     customer = CustomerForm()
 
     if request.method == 'POST':
@@ -45,18 +82,36 @@ def create_customer(request):
             form.save()
             return redirect('create_customer')
 
-    context = {'customer': customer}
+    context = {
+        'total_product': total_product,
+        'total_customer': total_customer,
+        'customer': customer
+    }
 
     return render(request, 'invoice/create_customer.html', context)
 
 
 def view_customer(request):
+    total_product = Product.objects.count()
+    total_customer = Customer.objects.count()
+
     customer = Customer.objects.all()
-    context = {'customer': customer}
+
+    context = {
+        'total_product': total_product,
+        'total_customer': total_customer,
+        'customer': customer
+    }
+
     return render(request, 'invoice/view_customer.html', context)
 
-# Invoice detail
+# Invoice detail view
+
+
 def create_invoice_detail(request):
+    total_product = Product.objects.count()
+    total_customer = Customer.objects.count()
+
     invoiceDetail = InvoiceDetailForm()
 
     if request.method == 'POST':
@@ -65,12 +120,21 @@ def create_invoice_detail(request):
             form.save()
             return redirect('create_invoice_detail')
 
-    context = {'invoiceDetail': invoiceDetail}
+    context = {
+        'total_product': total_product,
+        'total_customer': total_customer,
+        'invoiceDetail': invoiceDetail
+    }
 
     return render(request, 'invoice/create_invoice_detail.html', context)
 
-# Invoice
+# Invoice view
+
+
 def create_invoice(request):
+    total_product = Product.objects.count()
+    total_customer = Customer.objects.count()
+
     invoice = InvoiceForm()
 
     if request.method == 'POST':
@@ -79,6 +143,10 @@ def create_invoice(request):
             form.save()
             return redirect('create_invoice')
 
-    context = {'invoice': invoice}
+    context = {
+        'total_product': total_product,
+        'total_customer': total_customer,
+        'invoice': invoice
+    }
 
     return render(request, 'invoice/create_invoice.html', context)
