@@ -15,6 +15,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Unit</th>
@@ -23,6 +24,7 @@
                         <tbody>
                             {% for i in product %}
                             <tr>
+                                <td>{{i.product_id}}</td>
                                 <td>{{i.product_name}}</td>
                                 <td>{{i.product_price}}</td>
                                 <td>{{i.product_unit}}</td>

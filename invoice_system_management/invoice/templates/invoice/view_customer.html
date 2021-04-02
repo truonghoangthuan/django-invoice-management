@@ -15,6 +15,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Name</th>
                                 <th>Gender</th>
                                 <th>Date of birth</th>
@@ -24,6 +25,7 @@
                         <tbody>
                             {% for i in customer %}
                             <tr>
+                                <td>{{i.customer_id}}</td>
                                 <td>{{i.customer_name}}</td>
                                 <td>{{i.customer_gender}}</td>
                                 <td>{{i.customer_dob}}</td>

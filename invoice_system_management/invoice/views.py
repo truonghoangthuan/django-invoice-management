@@ -39,9 +39,9 @@ def create_product(request):
     product = ProductForm()
 
     if request.method == 'POST':
-        form = ProductForm(request.POST)
-        if form.is_valid():
-            form.save()
+        product = ProductForm(request.POST)
+        if product.is_valid():
+            product.save()
             return redirect('create_product')
 
     context = {
@@ -77,9 +77,9 @@ def create_customer(request):
     customer = CustomerForm()
 
     if request.method == 'POST':
-        form = CustomerForm(request.POST)
-        if form.is_valid():
-            form.save()
+        customer = CustomerForm(request.POST)
+        if customer.is_valid():
+            customer.save()
             return redirect('create_customer')
 
     context = {
@@ -116,20 +116,20 @@ def create_invoice_detail(request):
     invoice = InvoiceForm()
 
     if request.method == 'POST':
-        form = InvoiceDetailForm(request.POST)
-        if form.is_valid():
-            form.save()
+        invoiceDetail = InvoiceDetailForm(request.POST)
+        if invoiceDetail.is_valid():
+            invoiceDetail.save()
 
-            form2 = InvoiceForm()
-            if form2.is_valid():
-                form2.save()
+            invoice = InvoiceForm()
+            if invoice.is_valid():
+                invoice.save()
                 return redirect('create_invoice_detail')
 
     context = {
         'total_product': total_product,
         'total_customer': total_customer,
         'invoiceDetail': invoiceDetail,
-        'invoice': invoice
+        'invoice': invoice,
     }
 
     return render(request, 'invoice/create_invoice_detail.html', context)
