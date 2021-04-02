@@ -113,10 +113,10 @@ class InvoiceForm(forms.ModelForm):
             'invoice_total',
         ]
         widgets = {
-            # 'invoice_id': forms.Select(attrs={
-            #     'class': 'form-control',
-            #     'id': 'invoice_id',
-            # }),
+            'invoice_id': forms.TextInput(attrs={
+                'class': 'form-control',
+                'id': 'invoice_id',
+            }),
             'invoice_customer_id': forms.Select(attrs={
                 'class': 'form-control',
                 'id': 'customer_id',

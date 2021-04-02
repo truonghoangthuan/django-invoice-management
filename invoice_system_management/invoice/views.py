@@ -120,10 +120,10 @@ def create_invoice_detail(request):
         if invoiceDetail.is_valid():
             invoiceDetail.save()
 
-            invoice = InvoiceForm()
-            if invoice.is_valid():
-                invoice.save()
-                return redirect('create_invoice_detail')
+    invoice = InvoiceForm()
+    if invoice.is_valid():
+        invoice.save()
+        return redirect('create_invoice_detail')
 
     context = {
         'total_product': total_product,

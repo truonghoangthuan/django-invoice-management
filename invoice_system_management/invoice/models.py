@@ -36,7 +36,8 @@ class InvoiceDetail(models.Model):
         return str(self.invoice_detail_id)
 
 class Invoice(models.Model):
-    invoice_id = models.ForeignKey(InvoiceDetail, on_delete=models.CASCADE)
+    # invoice_id = models.ForeignKey(InvoiceDetail, on_delete=models.CASCADE)
+    invoice_id = models.CharField(max_length=10)
     invoice_date = models.DateField()
     invoice_total = models.FloatField()
     invoice_customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
