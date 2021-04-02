@@ -6,7 +6,14 @@ from .models import *
 
 # Create your views here.
 def index(request):
-    return render(request, 'invoice/index.html')
+    total_product = Product.objects.count()
+    total_customer = Customer.objects.count()
+
+    context = {
+        'total_product': total_product,
+        'total_customer': total_customer}
+
+    return render(request, 'invoice/index.html', context)
 
 # Product
 def create_product(request):
