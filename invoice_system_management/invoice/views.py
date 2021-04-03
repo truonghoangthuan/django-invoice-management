@@ -117,13 +117,11 @@ def create_invoice_detail(request):
 
     if request.method == 'POST':
         invoiceDetail = InvoiceDetailForm(request.POST)
-        if invoiceDetail.is_valid():
+        invoice = InvoiceForm(request.POST)
+        if (invoiceDetail.is_valid() and invoice.is_valid()):
             invoiceDetail.save()
-
-    invoice = InvoiceForm()
-    if invoice.is_valid():
-        invoice.save()
-        return redirect('create_invoice_detail')
+            invoice.save()
+            return redirect('create_invoice_detail')
 
     context = {
         'total_product': total_product,
