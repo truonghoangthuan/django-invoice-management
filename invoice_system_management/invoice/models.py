@@ -38,10 +38,18 @@ class InvoiceDetail(models.Model):
 class Invoice(models.Model):
     # invoice_id = models.CharField(max_length=10)
     # id = models.ForeignKey(InvoiceDetail, on_delete=models.CASCADE)
-    # invoice_id = models.ForeignKey(InvoiceDetail, on_delete=models.CASCADE)
+    invoice_detail = models.ForeignKey(InvoiceDetail, on_delete=models.CASCADE)
     invoice_date = models.DateField()
     invoice_total = models.FloatField()
     invoice_customer_name = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.invoice_id.id)
+        return str(self.invoice_detail.id)
+
+    def get_total_bill(self):
+        amount = self.invoice_detail.invoice_detail_product_amount
+        product_price = invoice_detail.invoice_detail_product_amount.product_price
+
+        invoice_total = amount * product_price
+
+        return invoice_total

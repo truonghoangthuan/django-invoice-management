@@ -110,7 +110,7 @@ class InvoiceForm(forms.ModelForm):
             # 'invoice_id',
             'invoice_customer_name',
             'invoice_date',
-            'invoice_total',
+            # 'invoice_total',
         ]
         widgets = {
             # 'invoice_id': forms.TextInput(attrs={
@@ -127,10 +127,10 @@ class InvoiceForm(forms.ModelForm):
                 'placeholder': 'Enter date create',
                 'type': 'date',
             }),
-            'invoice_total': forms.TextInput(attrs={
-                'class': 'form-control',
-                'id': 'invoice_total',
-                'placeholder': 'Total bill',
-                'type': 'number',
-            }),
+            # 'invoice_total': forms.TextInput(attrs={
+            #     'class': 'form-control',
+            #     'id': 'invoice_total',
+            #     'placeholder': 'Total bill',
+            #     'type': 'number',
+            # }),
         }

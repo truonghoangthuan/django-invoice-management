@@ -8,10 +8,12 @@ from .models import *
 def base(request):
     total_product = Product.objects.count()
     total_customer = Customer.objects.count()
+    total_invoice = Invoice.objects.count()
 
     context = {
         'total_product': total_product,
         'total_customer': total_customer,
+        'total_invoice': total_invoice,
     }
 
     return render(request, 'invoice/base/base.html', context)
@@ -22,10 +24,12 @@ def base(request):
 def index(request):
     total_product = Product.objects.count()
     total_customer = Customer.objects.count()
+    total_invoice = Invoice.objects.count()
 
     context = {
         'total_product': total_product,
         'total_customer': total_customer,
+        'total_invoice': total_invoice,
     }
     return render(request, 'invoice/index.html', context)
 
@@ -35,6 +39,7 @@ def index(request):
 def create_product(request):
     total_product = Product.objects.count()
     total_customer = Customer.objects.count()
+    total_invoice = Invoice.objects.count()
 
     product = ProductForm()
 
@@ -47,6 +52,7 @@ def create_product(request):
     context = {
         'total_product': total_product,
         'total_customer': total_customer,
+        'total_invoice': total_invoice,
         'product': product,
     }
 
@@ -56,12 +62,14 @@ def create_product(request):
 def view_product(request):
     total_product = Product.objects.count()
     total_customer = Customer.objects.count()
+    total_invoice = Invoice.objects.count()
 
     product = Product.objects.all()
 
     context = {
         'total_product': total_product,
         'total_customer': total_customer,
+        'total_invoice': total_invoice,
         'product': product,
     }
 
@@ -73,6 +81,7 @@ def view_product(request):
 def create_customer(request):
     total_product = Product.objects.count()
     total_customer = Customer.objects.count()
+    total_invoice = Invoice.objects.count()
 
     customer = CustomerForm()
 
@@ -85,6 +94,7 @@ def create_customer(request):
     context = {
         'total_product': total_product,
         'total_customer': total_customer,
+        'total_invoice': total_invoice,
         'customer': customer,
     }
 
@@ -94,12 +104,14 @@ def create_customer(request):
 def view_customer(request):
     total_product = Product.objects.count()
     total_customer = Customer.objects.count()
+    total_invoice = Invoice.objects.count()
 
     customer = Customer.objects.all()
 
     context = {
         'total_product': total_product,
         'total_customer': total_customer,
+        'total_invoice': total_invoice,
         'customer': customer,
     }
 
@@ -111,6 +123,7 @@ def view_customer(request):
 def create_invoice_detail(request):
     total_product = Product.objects.count()
     total_customer = Customer.objects.count()
+    total_invoice = Invoice.objects.count()
 
     invoiceDetail = InvoiceDetailForm()
     invoice = InvoiceForm()
@@ -126,6 +139,7 @@ def create_invoice_detail(request):
     context = {
         'total_product': total_product,
         'total_customer': total_customer,
+        'total_invoice': total_invoice,
         'invoiceDetail': invoiceDetail,
         'invoice': invoice,
     }
@@ -138,13 +152,33 @@ def create_invoice_detail(request):
 def view_invoice(request):
     total_product = Product.objects.count()
     total_customer = Customer.objects.count()
+    total_invoice = Invoice.objects.count()
 
     invoice = Invoice.objects.all()
 
     context = {
         'total_product': total_product,
         'total_customer': total_customer,
+        'total_invoice': total_invoice,
         'invoice': invoice,
     }
 
     return render(request, 'invoice/view_invoice.html', context)
+
+def view_invoice_detail(request, pk):
+    total_product = Product.objects.count()
+    total_customer = Customer.objects.count()
+    total_invoice = Invoice.objects.count()
+
+    invoice = Invoice.objects.get(id = pk)
+    invoiceDetail = InvoiceDetail.objects.get(id = pk)
+
+    context = {
+        'total_product': total_product,
+        'total_customer': total_customer,
+        'total_invoice': total_invoice,
+        'invoice': invoice,
+        'invoiceDetail': invoiceDetail,
+    }
+
+    return render(request, 'invoice/view_invoice_detail.html', context)
