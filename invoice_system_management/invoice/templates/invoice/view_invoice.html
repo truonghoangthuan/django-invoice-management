@@ -29,10 +29,13 @@
                                     {{i.id}}
                                 </td>
                                 <td style="padding: 0.45em;">
-                                    {{i.invoice_date}}
+                                    {{i.date}}
                                 </td>
                                 <td style="padding: 0.45em;">
-                                    {{i.invoice_customer_name}}
+                                    {{i.customer}}
+                                </td>
+                                <td style="padding: 0.45em;">
+                                    {{i.get_total_bill}}
                                 </td>
                                 <td style="padding: 0;">
                                     <a href="{% url 'view_invoice_detail' i.id %}" class="btn btn-outline-primary" style="width: 100%; height: 100%; border-radius: 0">

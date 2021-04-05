@@ -15,24 +15,26 @@
                     {% csrf_token %}
                     <div class="mb-3">
                         <label class="form-label" for="invoice_date">Date</label>
-                        {{invoice.invoice_date}}
+                        {{invoice.date}}
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="invoice_customer_id">Customer name</label>
-                        {{invoice.invoice_customer_name}}
+                        {{invoice.customer}}
                     </div>
+                    <div class="row">
                         <div class="col">
                             <div class="mb-3">
                                 <label class="form-label" for="invoice_detail_product_id">Product name</label>
-                                {{invoiceDetail.invoice_detail_product_name}}
+                                {{invoice_detail.product}}
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
                                 <label class="form-label" for="invoice_detail_product_amount">Amounts</label>
-                                {{invoiceDetail.invoice_detail_product_amount}}
+                                {{invoice_detail.amount}}
                             </div>
                         </div>
+                    </div>
                     <div class="mb-3">
                         <input class="btn btn-info" type="submit" name="Create customer">
                     </div>

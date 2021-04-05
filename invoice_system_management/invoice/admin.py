@@ -12,12 +12,11 @@ class CustomerAdmin(admin.ModelAdmin):
 
 
 class InvoiceDetailAdmin(admin.ModelAdmin):
-    list_display = ['id', 'invoice_detail_product_name',
-                    'invoice_detail_product_amount']
+    list_display = ['id', 'product', 'amount']
 
 
 class InvoiceAdmin(admin.ModelAdmin):
-    list_display = ['id', 'invoice_date', 'invoice_customer_name']
+    list_display = ['id', 'date', 'customer']
 
 
 # Register your models here.

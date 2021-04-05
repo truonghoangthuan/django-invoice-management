@@ -25,16 +25,21 @@ class Customer(models.Model):
     def __str__(self):
         return str(self.customer_name)
 
+
 class InvoiceDetail(models.Model):
-    invoice_detail_product_name = models.ForeignKey(Product, on_delete=models.CASCADE)
-    invoice_detail_product_amount = models.IntegerField()
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    amount = models.IntegerField()
 
     def __str__(self):
         return str(self.id)
 
-class Invoice(models.Model):
-    invoice_date = models.DateField()
-    invoice_customer_name = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return str(self.invoice_id.id)
+class Invoice(models.Model):
+    date = models.DateField()
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    invoice_detail = models.ForeignKey(InvoiceDetail, on_delete=models.SET_NULL, blank=True, null=True)
+
+    @property
+    def get_total_bill(self):
+        total = self.invoice_detail.product.product_price * self.invoice_detail.amount
+        return total
