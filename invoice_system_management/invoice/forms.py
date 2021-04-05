@@ -64,27 +64,6 @@ class CustomerForm(forms.ModelForm):
         }
 
 
-class InvoiceDetailForm(forms.ModelForm):
-    class Meta:
-        model = InvoiceDetail
-        fields = [
-            'product',
-            'amount',
-        ]
-        widgets = {
-            'product': forms.Select(attrs={
-                'class': 'form-control',
-                'id': 'invoice_detail_product_name',
-            }),
-            'amount': forms.TextInput(attrs={
-                'class': 'form-control',
-                'id': 'invoice_detail_product_amount',
-                'placeholder': 'Enter amount of the product',
-                'type': 'number',
-            })
-        }
-
-
 class InvoiceForm(forms.ModelForm):
     class Meta:
         model = Invoice
@@ -103,4 +82,25 @@ class InvoiceForm(forms.ModelForm):
                 'placeholder': 'Enter date create',
                 'type': 'date',
             }),
+        }
+
+
+class InvoiceDetailForm(forms.ModelForm):
+    class Meta:
+        model = InvoiceDetail
+        fields = [
+            'product',
+            'amount',
+        ]
+        widgets = {
+            'product': forms.Select(attrs={
+                'class': 'form-control',
+                'id': 'invoice_detail_product_name',
+            }),
+            'amount': forms.TextInput(attrs={
+                'class': 'form-control',
+                'id': 'invoice_detail_product_amount',
+                'placeholder': 'Enter amount of the product',
+                'type': 'number',
+            })
         }

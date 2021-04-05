@@ -159,14 +159,14 @@ def view_invoice(request):
     total_customer = Customer.objects.count()
     total_invoice = Invoice.objects.count()
 
-    invoice = Invoice.objects.all()
+    invoice_detail = InvoiceDetail.objects.all()
 
     context = {
         'total_product': total_product,
         'total_customer': total_customer,
         'total_invoice': total_invoice,
 
-        'invoice': invoice,
+        'invoice_detail': invoice_detail,
     }
 
     return render(request, 'invoice/view_invoice.html', context)
