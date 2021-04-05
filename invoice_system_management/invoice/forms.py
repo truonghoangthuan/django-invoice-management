@@ -6,17 +6,11 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = [
-            # 'product_id',
             'product_name',
             'product_price',
             'product_unit',
         ]
         widgets = {
-            # 'product_id': forms.TextInput(attrs={
-            #     'class': 'form-control',
-            #     'id': 'product_id',
-            #     'placeholder': 'Enter ID for the product',
-            # }),
             'product_name': forms.TextInput(attrs={
                 'class': 'form-control',
                 'id': 'product_name',
@@ -40,18 +34,12 @@ class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = [
-            # 'customer_id',
             'customer_name',
             'customer_gender',
             'customer_dob',
             'customer_points',
         ]
         widgets = {
-            # 'customer_id': forms.TextInput(attrs={
-            #     'class': 'form-control',
-            #     'id': 'customer_id',
-            #     'placeholder': 'Enter ID of the customer',
-            # }),
             'customer_name': forms.TextInput(attrs={
                 'class': 'form-control',
                 'id': 'customer_name',
@@ -80,16 +68,10 @@ class InvoiceDetailForm(forms.ModelForm):
     class Meta:
         model = InvoiceDetail
         fields = [
-            # 'invoice_detail_id',
             'invoice_detail_product_name',
             'invoice_detail_product_amount',
         ]
         widgets = {
-            # 'invoice_detail_id': forms.TextInput(attrs={
-            #     'class': 'form-control',
-            #     'id': 'invoice_detail_id',
-            #     'placeholder': 'Enter ID of the bill',
-            # }),
             'invoice_detail_product_name': forms.Select(attrs={
                 'class': 'form-control',
                 'id': 'invoice_detail_product_name',
@@ -107,16 +89,11 @@ class InvoiceForm(forms.ModelForm):
     class Meta:
         model = Invoice
         fields = [
-            # 'invoice_id',
             'invoice_customer_name',
             'invoice_date',
             'invoice_total',
         ]
         widgets = {
-            # 'invoice_id': forms.TextInput(attrs={
-            #     'class': 'form-control',
-            #     'id': 'invoice_detail_id',
-            # }),
             'invoice_customer_name': forms.Select(attrs={
                 'class': 'form-control',
                 'id': 'invoice_customer_name',

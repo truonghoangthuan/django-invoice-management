@@ -13,14 +13,6 @@
             <div class="card-body">
                 <form method="post" action="">
                     {% csrf_token %}
-                    <!-- <div class="mb-3">
-                        <label class="form-label" for="customer_name">Invoice ID</label>
-                        {{invoice.invoice_id}}
-                    </div> -->
-                    <!-- <div class="mb-3">
-                        <label class="form-label" for="invoice_detail_id">Invoice ID</label>
-                        {{invoiceDetail.invoice_detail_id}}
-                    </div> -->
                     <div class="mb-3">
                         <label class="form-label" for="invoice_date">Date</label>
                         {{invoice.invoice_date}}
@@ -29,18 +21,18 @@
                         <label class="form-label" for="invoice_customer_id">Customer name</label>
                         {{invoice.invoice_customer_name}}
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="invoice_detail_product_id">Product name</label>
-                        {{invoiceDetail.invoice_detail_product_name}}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="invoice_detail_product_amount">Amounts</label>
-                        {{invoiceDetail.invoice_detail_product_amount}}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="invoice_total">Total</label>
-                        {{invoice.invoice_total}}
-                    </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="invoice_detail_product_id">Product name</label>
+                                {{invoiceDetail.invoice_detail_product_name}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="invoice_detail_product_amount">Amounts</label>
+                                {{invoiceDetail.invoice_detail_product_amount}}
+                            </div>
+                        </div>
                     <div class="mb-3">
                         <input class="btn btn-info" type="submit" name="Create customer">
                     </div>

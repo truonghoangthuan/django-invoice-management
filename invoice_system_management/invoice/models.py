@@ -3,7 +3,6 @@ from django.db import models
 
 # Create your models here.
 class Product(models.Model):
-    # product_id = models.CharField(max_length=10)
     product_name = models.CharField(max_length=255)
     product_price = models.FloatField()
     product_unit = models.CharField(max_length=255)
@@ -18,7 +17,6 @@ class Customer(models.Model):
         ('Female', 'Female'),
         ('Others', 'Others'),
     )
-    # customer_id = models.CharField(max_length=10)
     customer_name = models.CharField(max_length=255)
     customer_gender = models.CharField(max_length=50, choices=GENDER_CHOICES)
     customer_dob = models.DateField()
@@ -28,7 +26,6 @@ class Customer(models.Model):
         return str(self.customer_name)
 
 class InvoiceDetail(models.Model):
-    # invoice_detail_id = models.CharField(max_length=10)
     invoice_detail_product_name = models.ForeignKey(Product, on_delete=models.CASCADE)
     invoice_detail_product_amount = models.IntegerField()
 
@@ -36,11 +33,7 @@ class InvoiceDetail(models.Model):
         return str(self.id)
 
 class Invoice(models.Model):
-    # invoice_id = models.CharField(max_length=10)
-    # id = models.ForeignKey(InvoiceDetail, on_delete=models.CASCADE)
-    # invoice_id = models.ForeignKey(InvoiceDetail, on_delete=models.CASCADE)
     invoice_date = models.DateField()
-    invoice_total = models.FloatField()
     invoice_customer_name = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
     def __str__(self):

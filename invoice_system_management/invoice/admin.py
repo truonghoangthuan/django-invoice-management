@@ -17,7 +17,7 @@ class InvoiceDetailAdmin(admin.ModelAdmin):
 
 
 class InvoiceAdmin(admin.ModelAdmin):
-    list_display = ['id', 'invoice_date', 'invoice_total', 'invoice_customer_name']
+    list_display = ['id', 'invoice_date', 'invoice_customer_name']
 
 
 # Register your models here.
