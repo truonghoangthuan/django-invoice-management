@@ -53,6 +53,7 @@ def create_product(request):
         'total_product': total_product,
         'total_customer': total_customer,
         'total_invoice': total_invoice,
+        
         'product': product,
     }
 
@@ -70,6 +71,7 @@ def view_product(request):
         'total_product': total_product,
         'total_customer': total_customer,
         'total_invoice': total_invoice,
+
         'product': product,
     }
 
@@ -95,6 +97,7 @@ def create_customer(request):
         'total_product': total_product,
         'total_customer': total_customer,
         'total_invoice': total_invoice,
+
         'customer': customer,
     }
 
@@ -112,6 +115,7 @@ def view_customer(request):
         'total_product': total_product,
         'total_customer': total_customer,
         'total_invoice': total_invoice,
+
         'customer': customer,
     }
 
@@ -129,10 +133,10 @@ def create_invoice_detail(request):
     invoice = InvoiceForm()
 
     if request.method == 'POST':
-        invoiceDetail = InvoiceDetailForm(request.POST)
+        invoice_detail = InvoiceDetailForm(request.POST)
         invoice = InvoiceForm(request.POST)
-        if (invoiceDetail.is_valid() and invoice.is_valid()):
-            invoiceDetail.save()
+        if (invoice_detail.is_valid() and invoice.is_valid()):
+            invoice_detail.save()
             invoice.save()
             return redirect('create_invoice_detail')
 
@@ -140,6 +144,7 @@ def create_invoice_detail(request):
         'total_product': total_product,
         'total_customer': total_customer,
         'total_invoice': total_invoice,
+        
         'invoice_detail': invoice_detail,
         'invoice': invoice,
     }
@@ -160,6 +165,7 @@ def view_invoice(request):
         'total_product': total_product,
         'total_customer': total_customer,
         'total_invoice': total_invoice,
+
         'invoice': invoice,
     }
 
@@ -177,6 +183,7 @@ def view_invoice_detail(request, pk):
         'total_product': total_product,
         'total_customer': total_customer,
         'total_invoice': total_invoice,
+
         'invoice': invoice,
         'invoice_detail': invoice_detail,
     }

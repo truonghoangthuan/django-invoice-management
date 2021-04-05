@@ -32,6 +32,11 @@ class InvoiceDetail(models.Model):
 
     def __str__(self):
         return str(self.id)
+    
+    @property
+    def get_total_bill(self):
+        total = self.product.product_price * self.amount
+        return total
 
 
 class Invoice(models.Model):

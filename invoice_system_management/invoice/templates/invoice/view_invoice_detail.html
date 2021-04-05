@@ -29,19 +29,19 @@
                                     {{invoice.id}}
                                 </td>
                                 <td style="padding: 0.45em;">
-                                    {{invoice.invoice_date}}
+                                    {{invoice.date}}
                                 </td>
                                 <td style="padding: 0.45em;">
-                                    {{invoice.invoice_customer_name}}
+                                    {{invoice.customer}}
                                 </td>
                                 <td style="padding: 0.45em;">
-                                    {{invoice_detail.invoice_detail_product_name}}
+                                    {{invoice_detail.product}}
                                 </td>
                                 <td style="padding: 0.45em;">
-                                    {{invoice_detail.invoice_detail_product_amount}}
+                                    {{invoice_detail.amount}}
                                 </td>
                                 <td style="padding: 0.45em;">
-                                    ???
+                                    {{invoice_detail.get_total_bill}}
                                 </td>
                             </tr>
                         </tbody>
