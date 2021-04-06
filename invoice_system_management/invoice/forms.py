@@ -89,17 +89,22 @@ class InvoiceDetailForm(forms.ModelForm):
     class Meta:
         model = InvoiceDetail
         fields = [
+            'invoice',
             'product',
             'amount',
         ]
         widgets = {
+            'invoice': forms.Select(attrs={
+                'class': 'form-control',
+                'id': 'invoice_detail_invoice',
+            }),
             'product': forms.Select(attrs={
                 'class': 'form-control',
-                'id': 'invoice_detail_product_name',
+                'id': 'invoice_detail_product',
             }),
             'amount': forms.TextInput(attrs={
                 'class': 'form-control',
-                'id': 'invoice_detail_product_amount',
+                'id': 'invoice_detail_amount',
                 'placeholder': 'Enter amount of the product',
                 'type': 'number',
             })

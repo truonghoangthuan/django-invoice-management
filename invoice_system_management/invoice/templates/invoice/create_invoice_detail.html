@@ -14,23 +14,19 @@
                 <form method="post" action="">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label class="form-label" for="invoice_date">Date</label>
-                        {{invoice.date}}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="invoice_customer_id">Customer name</label>
-                        {{invoice.customer}}
+                        <label class="form-label" for="invoice_detail_invoice">Invoice</label>
+                        {{invoice_detail.invoice}}
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <label class="form-label" for="invoice_detail_product_id">Product name</label>
+                                <label class="form-label" for="invoice_detail_product">Product name</label>
                                 {{invoice_detail.product}}
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
-                                <label class="form-label" for="invoice_detail_product_amount">Amounts</label>
+                                <label class="form-label" for="invoice_detail_amount">Amounts</label>
                                 {{invoice_detail.amount}}
                             </div>
                         </div>

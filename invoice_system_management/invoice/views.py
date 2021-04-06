@@ -53,7 +53,7 @@ def create_product(request):
         'total_product': total_product,
         'total_customer': total_customer,
         'total_invoice': total_invoice,
-        
+
         'product': product,
     }
 
@@ -121,6 +121,50 @@ def view_customer(request):
 
     return render(request, 'invoice/view_customer.html', context)
 
+
+# Invoice view
+
+def create_invoice(request):
+    total_product = Product.objects.count()
+    total_customer = Customer.objects.count()
+    total_invoice = Invoice.objects.count()
+
+    invoice = InvoiceForm()
+
+    if request.method == 'POST':
+        invoice = InvoiceForm(request.POST)
+        if (invoice.is_valid()):
+            invoice.save()
+            return redirect('create_invoice')
+
+    context = {
+        'total_product': total_product,
+        'total_customer': total_customer,
+        'total_invoice': total_invoice,
+
+        'invoice': invoice,
+    }
+
+    return render(request, 'invoice/create_invoice.html', context)
+
+
+def view_invoice(request):
+    total_product = Product.objects.count()
+    total_customer = Customer.objects.count()
+    total_invoice = Invoice.objects.count()
+
+    invoice = Invoice.objects.all()
+
+    context = {
+        'total_product': total_product,
+        'total_customer': total_customer,
+        'total_invoice': total_invoice,
+
+        'invoice': invoice,
+    }
+
+    return render(request, 'invoice/view_invoice.html', context)
+
 # Invoice detail view
 
 
@@ -130,54 +174,31 @@ def create_invoice_detail(request):
     total_invoice = Invoice.objects.count()
 
     invoice_detail = InvoiceDetailForm()
-    invoice = InvoiceForm()
 
     if request.method == 'POST':
         invoice_detail = InvoiceDetailForm(request.POST)
-        invoice = InvoiceForm(request.POST)
-        if (invoice_detail.is_valid() and invoice.is_valid()):
+        if (invoice_detail.is_valid()):
             invoice_detail.save()
-            invoice.save()
             return redirect('create_invoice_detail')
 
     context = {
         'total_product': total_product,
         'total_customer': total_customer,
         'total_invoice': total_invoice,
-        
+
         'invoice_detail': invoice_detail,
-        'invoice': invoice,
     }
 
     return render(request, 'invoice/create_invoice_detail.html', context)
 
-# Invoice view
-
-
-def view_invoice(request):
-    total_product = Product.objects.count()
-    total_customer = Customer.objects.count()
-    total_invoice = Invoice.objects.count()
-
-    invoice_detail = InvoiceDetail.objects.all()
-
-    context = {
-        'total_product': total_product,
-        'total_customer': total_customer,
-        'total_invoice': total_invoice,
-
-        'invoice_detail': invoice_detail,
-    }
-
-    return render(request, 'invoice/view_invoice.html', context)
 
 def view_invoice_detail(request, pk):
     total_product = Product.objects.count()
     total_customer = Customer.objects.count()
     total_invoice = Invoice.objects.count()
 
-    invoice = Invoice.objects.get(id = pk)
-    invoice_detail = InvoiceDetail.objects.get(id = pk)
+    invoice = Invoice.objects.get(id=pk)
+    invoice_detail = InvoiceDetail.objects.get(id=pk)
 
     context = {
         'total_product': total_product,
