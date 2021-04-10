@@ -1,5 +1,5 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
+
 from .forms import *
 from .models import *
 
@@ -18,6 +18,7 @@ def base(request):
 
     return render(request, 'invoice/base/base.html', context)
 
+
 # Home view
 
 
@@ -32,6 +33,7 @@ def index(request):
         'total_invoice': total_invoice,
     }
     return render(request, 'invoice/index.html', context)
+
 
 # Product view
 
@@ -76,6 +78,7 @@ def view_product(request):
     }
 
     return render(request, 'invoice/view_product.html', context)
+
 
 # Customer view
 
@@ -130,17 +133,11 @@ def create_invoice(request):
     total_invoice = Invoice.objects.count()
 
     invoice = InvoiceForm()
-    invoice_detail = InvoiceDetailForm()
-
     if request.method == 'POST':
         invoice = InvoiceForm(request.POST)
-        if (invoice.is_valid()):
-            new_invoice = request.POST.get('invoice_customer_name', 'invoice_date')
-        invoice_detail = InvoiceDetailForm(request.POST)
-        if (invoice.is_valid() and invoice_detail.is_valid()):
+        if invoice.is_valid():
             invoice.save()
-            invoice_detail.save()
-            return redirect('create_invoice')
+            return redirect('create_invoice_detail')
 
     context = {
         'total_product': total_product,
@@ -158,17 +155,18 @@ def view_invoice(request):
     total_customer = Customer.objects.count()
     total_invoice = Invoice.objects.count()
 
-    invoice = Invoice.objects.all()
+    invoice_detail = InvoiceDetail.objects.all()
 
     context = {
         'total_product': total_product,
         'total_customer': total_customer,
         'total_invoice': total_invoice,
 
-        'invoice': invoice,
+        'invoice_detail': invoice_detail,
     }
 
     return render(request, 'invoice/view_invoice.html', context)
+
 
 # Invoice detail view
 
@@ -182,7 +180,7 @@ def create_invoice_detail(request):
 
     if request.method == 'POST':
         invoice_detail = InvoiceDetailForm(request.POST)
-        if (invoice_detail.is_valid()):
+        if invoice_detail.is_valid():
             invoice_detail.save()
             return redirect('create_invoice_detail')
 
