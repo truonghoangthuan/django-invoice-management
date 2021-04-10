@@ -130,11 +130,16 @@ def create_invoice(request):
     total_invoice = Invoice.objects.count()
 
     invoice = InvoiceForm()
+    invoice_detail = InvoiceDetailForm()
 
     if request.method == 'POST':
         invoice = InvoiceForm(request.POST)
         if (invoice.is_valid()):
+            new_invoice = request.POST.get('invoice_customer_name', 'invoice_date')
+        invoice_detail = InvoiceDetailForm(request.POST)
+        if (invoice.is_valid() and invoice_detail.is_valid()):
             invoice.save()
+            invoice_detail.save()
             return redirect('create_invoice')
 
     context = {

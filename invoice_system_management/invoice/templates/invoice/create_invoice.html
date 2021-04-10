@@ -21,11 +21,28 @@
                         <label class="form-label" for="invoice_customer_id">Customer name</label>
                         {{invoice.customer}}
                     </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="invoice_detail_product">Product name</label>
+                                {{invoice_detail.product}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="invoice_detail_amount">Amounts</label>
+                                {{invoice_detail.amount}}
+                            </div>
+                        </div>
+                    </div>
                     <div class="mb-3">
-                        <a href="{% url 'create_invoice_detail' i.id %}" class="btn btn-outline-primary" style="width: 100%; height: 100%; border-radius: 0">
+                        <input class="btn btn-info" type="submit" name="create-invoice-detail">
+                    </div>
+                    <!-- <div class="mb-3">
+                        <a href="{% url 'create_invoice_detail' %}" class="btn btn-outline-primary" style="width: 100%; height: 100%; border-radius: 0">
                             <i class="fas fa-long-arrow-alt-right"></i>
                         </a>
-                    </div>
+                    </div> -->
                 </form>
             </div>
         </div>

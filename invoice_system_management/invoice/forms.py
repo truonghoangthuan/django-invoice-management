@@ -75,12 +75,14 @@ class InvoiceForm(forms.ModelForm):
             'customer': forms.Select(attrs={
                 'class': 'form-control',
                 'id': 'invoice_customer_name',
+                'name': 'invoice_customer_name',
             }),
             'date': forms.DateInput(attrs={
                 'class': 'form-control',
                 'id': 'invoice_date',
                 'placeholder': 'Enter date create',
                 'type': 'date',
+                'name': 'invoice_date',
             }),
         }
 
