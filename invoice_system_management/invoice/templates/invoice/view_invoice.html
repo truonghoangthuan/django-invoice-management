@@ -23,19 +23,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for i in invoice_detail %}
+                            {% for i in invoice %}
                             <tr>
                                 <td style="padding: 0.45em;">
                                     {{i.id}}
                                 </td>
                                 <td style="padding: 0.45em;">
-                                    {{i.invoice.date}}
+                                    {{i.date}}
                                 </td>
                                 <td style="padding: 0.45em;">
-                                    {{i.invoice.customer}}
+                                    {{i.customer}}
                                 </td>
                                 <td style="padding: 0.45em;">
-                                    {{i.get_total_bill}}
+                                    {{i.get_total_invoice}}
                                 </td>
                                 <td style="padding: 0;">
                                     <a href="{% url 'view_invoice_detail' i.id %}" class="btn btn-outline-primary" style="width: 100%; height: 100%; border-radius: 0">
