@@ -1,3 +1,4 @@
+from django.forms import inlineformset_factory
 from django.shortcuts import render, redirect
 
 from .forms import *
@@ -137,7 +138,7 @@ def create_invoice(request):
         invoice = InvoiceForm(request.POST)
         if invoice.is_valid():
             invoice.save()
-            return redirect('create_invoice_detail')
+            return redirect('view_invoice')
 
     context = {
         'total_product': total_product,
@@ -176,21 +177,21 @@ def create_invoice_detail(request):
     total_customer = Customer.objects.count()
     total_invoice = Invoice.objects.count()
 
-    # invoice = Invoice.objects.get(id=pk)
-    # invoice_detail = InvoiceDetailForm(initial={'invoice': invoice})
-    invoice_detail = InvoiceDetailForm()
+    OrderFormSet = inlineformset_factory(Invoice, InvoiceDetail, InvoiceDetailForm, extra=5)
+    invoice = Invoice.objects.get(id=1)
+    formset = OrderFormSet(instance=invoice)
     if request.method == 'POST':
         invoice_detail = InvoiceDetailForm(request.POST)
         if invoice_detail.is_valid():
             invoice_detail.save()
-            return redirect('view_invoice')
+            return redirect('create_invoice')
 
     context = {
         'total_product': total_product,
         'total_customer': total_customer,
         'total_invoice': total_invoice,
 
-        'invoice_detail': invoice_detail,
+        'invoice_detail': formset,
     }
 
     return render(request, 'invoice/create_invoice_detail.html', context)

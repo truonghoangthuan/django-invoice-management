@@ -1,4 +1,5 @@
 from django import forms
+
 from .models import *
 
 
@@ -68,7 +69,6 @@ class InvoiceForm(forms.ModelForm):
     class Meta:
         model = Invoice
         fields = [
-            'invoice_detail',
             'customer',
             'date',
         ]
@@ -92,10 +92,15 @@ class InvoiceDetailForm(forms.ModelForm):
     class Meta:
         model = InvoiceDetail
         fields = [
+            'invoice',
             'product',
             'amount',
         ]
         widgets = {
+            'invoice': forms.Select(attrs={
+                'class': 'form-control',
+                'id': 'invoice_detail_invoice',
+            }),
             'product': forms.Select(attrs={
                 'class': 'form-control',
                 'id': 'invoice_detail_product',

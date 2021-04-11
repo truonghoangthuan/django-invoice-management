@@ -13,24 +13,24 @@
             <div class="card-body">
                 <form method="post" action="">
                     {% csrf_token %}
-                    <div class="mb-3">
-                        <label class="form-label" for="invoice_detail_invoice">Invoice</label>
-                        {{invoice_detail.invoice}}
-                    </div>
+                    {% for invoice in invoice_detail %}
+<!--                    {{invoice}}-->
+<!--                    <hr>-->
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
                                 <label class="form-label" for="invoice_detail_product">Product name</label>
-                                {{invoice_detail.product}}
+                                {{invoice.product}}
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
                                 <label class="form-label" for="invoice_detail_amount">Amounts</label>
-                                {{invoice_detail.amount}}
+                                {{invoice.amount}}
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
                     <div class="mb-3">
                         <input class="btn btn-info" type="submit" name="create-invoice-detail">
                     </div>
