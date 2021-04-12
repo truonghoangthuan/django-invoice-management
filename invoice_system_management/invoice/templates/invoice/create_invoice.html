@@ -14,20 +14,33 @@
                 <form method="post" action="">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label class="form-label" for="invoice_invoice_detail">Invoice</label>
-                        {{invoice.invoice}}
-                    </div>
-                    <div class="mb-3">
                         <label class="form-label" for="invoice_date">Date</label>
-                        {{invoice.date}}
+                        {{form.date}}
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="invoice_customer_name">Customer name</label>
-                        {{invoice.customer}}
+                        {{form.customer}}
                     </div>
+                    {{ formset.management_form }}
+                    {% for form in formset %}
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="invoice_detail_product">Product name</label>
+                                {{form.product}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="invoice_detail_amount">Amounts</label>
+                                {{form.amount}}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
                     <div class="mb-3">
                         <input class="btn btn-outline-primary" style="width: 100%; height: 100%; border-radius: 0"
-                               type="submit" name="create-invoice-detail">
+                               type="submit" name="create-invoice">
                     </div>
                 </form>
             </div>

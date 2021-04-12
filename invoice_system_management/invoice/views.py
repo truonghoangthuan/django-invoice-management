@@ -1,4 +1,4 @@
-from django.forms import inlineformset_factory
+from django.forms import inlineformset_factory, formset_factory
 from django.shortcuts import render, redirect
 
 from .forms import *
@@ -133,10 +133,23 @@ def create_invoice(request):
     total_customer = Customer.objects.count()
     total_invoice = Invoice.objects.count()
 
-    invoice = InvoiceForm()
+    form = InvoiceForm()
+    formset = InvoiceDetailFormSet()
     if request.method == 'POST':
-        invoice = InvoiceForm(request.POST)
-        if invoice.is_valid():
+        form = InvoiceForm(request.POST)
+        formset = InvoiceDetailFormSet(request.POST)
+
+        if form.is_valid():
+            invoice = Invoice.objects.create(customer=form.cleaned_data.get('customer'),
+                                             date=form.cleaned_data.get('date'))
+        if formset.is_valid():
+            for form in formset:
+                product = form.cleaned_data.get('product')
+                amount = form.cleaned_data.get('amount')
+                if product and amount:
+                    InvoiceDetail(invoice=invoice,
+                                  product=product,
+                                  amount=amount).save()
             invoice.save()
             return redirect('view_invoice')
 
@@ -145,7 +158,8 @@ def create_invoice(request):
         'total_customer': total_customer,
         'total_invoice': total_invoice,
 
-        'invoice': invoice,
+        'form': form,
+        'formset': formset,
     }
 
     return render(request, 'invoice/create_invoice.html', context)
@@ -177,9 +191,7 @@ def create_invoice_detail(request):
     total_customer = Customer.objects.count()
     total_invoice = Invoice.objects.count()
 
-    OrderFormSet = inlineformset_factory(Invoice, InvoiceDetail, InvoiceDetailForm, extra=5)
-    invoice = Invoice.objects.get(id=1)
-    formset = OrderFormSet(instance=invoice)
+    invoice_detail = InvoiceDetailForm()
     if request.method == 'POST':
         invoice_detail = InvoiceDetailForm(request.POST)
         if invoice_detail.is_valid():
@@ -191,7 +203,7 @@ def create_invoice_detail(request):
         'total_customer': total_customer,
         'total_invoice': total_invoice,
 
-        'invoice_detail': formset,
+        'invoice_detail': invoice_detail,
     }
 
     return render(request, 'invoice/create_invoice_detail.html', context)

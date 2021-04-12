@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import formset_factory
 
 from .models import *
 
@@ -92,15 +93,10 @@ class InvoiceDetailForm(forms.ModelForm):
     class Meta:
         model = InvoiceDetail
         fields = [
-            'invoice',
             'product',
             'amount',
         ]
         widgets = {
-            'invoice': forms.Select(attrs={
-                'class': 'form-control',
-                'id': 'invoice_detail_invoice',
-            }),
             'product': forms.Select(attrs={
                 'class': 'form-control',
                 'id': 'invoice_detail_product',
@@ -112,3 +108,5 @@ class InvoiceDetailForm(forms.ModelForm):
                 'type': 'number',
             })
         }
+
+InvoiceDetailFormSet = formset_factory(InvoiceDetailForm, extra=1)
