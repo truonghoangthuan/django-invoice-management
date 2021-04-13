@@ -109,4 +109,4 @@ class InvoiceDetailForm(forms.ModelForm):
             })
         }
 
-InvoiceDetailFormSet = formset_factory(InvoiceDetailForm, extra=1)
+InvoiceDetailFormSet = formset_factory(InvoiceDetailForm, extra=5)

@@ -143,13 +143,17 @@ def create_invoice(request):
             invoice = Invoice.objects.create(customer=form.cleaned_data.get('customer'),
                                              date=form.cleaned_data.get('date'))
         if formset.is_valid():
+            total = 0
             for form in formset:
                 product = form.cleaned_data.get('product')
                 amount = form.cleaned_data.get('amount')
                 if product and amount:
+                    sum = float(product.product_price) * float(amount)
+                    total += sum
                     InvoiceDetail(invoice=invoice,
                                   product=product,
                                   amount=amount).save()
+            invoice.total = total
             invoice.save()
             return redirect('view_invoice')
 
@@ -215,14 +219,14 @@ def view_invoice_detail(request, pk):
     total_invoice = Invoice.objects.count()
 
     invoice = Invoice.objects.get(id=pk)
-    invoice_detail = InvoiceDetail.objects.get(id=pk)
+    invoice_detail = InvoiceDetail.objects.filter(invoice=invoice)
 
     context = {
         'total_product': total_product,
         'total_customer': total_customer,
         'total_invoice': total_invoice,
 
-        'invoice': invoice,
+        # 'invoice': invoice,
         'invoice_detail': invoice_detail,
     }
 

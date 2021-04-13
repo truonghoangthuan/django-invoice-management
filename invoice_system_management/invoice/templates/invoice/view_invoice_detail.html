@@ -15,7 +15,6 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Date</th>
                                 <th>Customer</th>
                                 <th>Product</th>
@@ -24,26 +23,25 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for i in invoice_detail %}
                             <tr>
                                 <td style="padding: 0.45em;">
-                                    {{invoice.id}}
+                                    {{i.invoice.date}}
                                 </td>
                                 <td style="padding: 0.45em;">
-                                    {{invoice.date}}
+                                    {{i.invoice.customer}}
                                 </td>
                                 <td style="padding: 0.45em;">
-                                    {{invoice.customer}}
+                                    {{i.product}}
                                 </td>
                                 <td style="padding: 0.45em;">
-                                    {{invoice_detail.product}}
+                                    {{i.amount}}
                                 </td>
                                 <td style="padding: 0.45em;">
-                                    {{invoice_detail.amount}}
-                                </td>
-                                <td style="padding: 0.45em;">
-                                    {{invoice_detail.get_total_bill}}
+                                    {{i.get_total_bill}}
                                 </td>
                             </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

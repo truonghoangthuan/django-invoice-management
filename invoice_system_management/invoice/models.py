@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 class Product(models.Model):
     product_name = models.CharField(max_length=255)
-    product_price = models.FloatField()
+    product_price = models.FloatField(default=0)
     product_unit = models.CharField(max_length=255)
 
     def __str__(self):
@@ -20,7 +20,7 @@ class Customer(models.Model):
     customer_name = models.CharField(max_length=255)
     customer_gender = models.CharField(max_length=50, choices=GENDER_CHOICES)
     customer_dob = models.DateField()
-    customer_points = models.IntegerField()
+    customer_points = models.IntegerField(default=0)
 
     def __str__(self):
         return str(self.customer_name)
@@ -29,6 +29,7 @@ class Customer(models.Model):
 class Invoice(models.Model):
     date = models.DateField()
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
+    total = models.FloatField(default=0)
 
     def __str__(self):
         return str(self.id)
@@ -37,9 +38,9 @@ class Invoice(models.Model):
 class InvoiceDetail(models.Model):
     invoice = models.ForeignKey(Invoice, on_delete=models.SET_NULL, blank=True, null=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True)
-    amount = models.IntegerField()
+    amount = models.IntegerField(default=0)
 
     @property
     def get_total_bill(self):
-        total = self.product.product_price * self.amount
+        total = float(self.product.product_price) * float(self.amount)
         return total
