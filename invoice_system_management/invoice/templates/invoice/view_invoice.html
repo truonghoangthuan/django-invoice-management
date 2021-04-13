@@ -14,36 +14,44 @@
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Date</th>
-                                <th>Customer</th>
-                                <th>Total</th>
-                                <th>Detail</th>
-                            </tr>
+                        <tr>
+                            <th>ID</th>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th>Total</th>
+                            <th>Detail</th>
+                            <th>Delete</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            {% for i in invoice %}
-                            <tr>
-                                <td style="padding: 0.45em;">
-                                    {{i.id}}
-                                </td>
-                                <td style="padding: 0.45em;">
-                                    {{i.date}}
-                                </td>
-                                <td style="padding: 0.45em;">
-                                    {{i.customer}}
-                                </td>
-                                <td style="padding: 0.45em;">
-                                    {{i.total}}
-                                </td>
-                                <td style="padding: 0;">
-                                    <a href="{% url 'view_invoice_detail' i.id %}" class="btn btn-outline-primary" style="width: 100%; height: 100%; border-radius: 0">
-                                        <i class="fas fa-long-arrow-alt-right"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            {% endfor %}
+                        {% for i in invoice %}
+                        <tr>
+                            <td style="padding: 0.45em;">
+                                {{i.id}}
+                            </td>
+                            <td style="padding: 0.45em;">
+                                {{i.date}}
+                            </td>
+                            <td style="padding: 0.45em;">
+                                {{i.customer}}
+                            </td>
+                            <td style="padding: 0.45em;">
+                                {{i.total}}
+                            </td>
+                            <td style="padding: 0;">
+                                <a href="{% url 'view_invoice_detail' i.id %}" class="btn btn-outline-primary"
+                                   style="width: 100%; height: 100%; border-radius: 0">
+                                    <i class="fas fa-long-arrow-alt-right"></i>
+                                </a>
+                            </td>
+                            <td style="padding: 0;">
+                                <a href="#" class="btn btn-outline-danger"
+                                   style="width: 100%; height: 100%; border-radius: 0">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>
