@@ -231,3 +231,17 @@ def view_invoice_detail(request, pk):
     }
 
     return render(request, 'invoice/view_invoice_detail.html', context)
+
+
+def delete_invoice(request):
+    total_product = Product.objects.count()
+    total_customer = Customer.objects.count()
+    total_invoice = Invoice.objects.count()
+
+    context = {
+        'total_product': total_product,
+        'total_customer': total_customer,
+        'total_invoice': total_invoice,
+    }
+
+    return render(request, 'invoice/delete_invoice.html', context)
