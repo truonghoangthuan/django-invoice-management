@@ -39,7 +39,6 @@ class CustomerForm(forms.ModelForm):
             'customer_name',
             'customer_gender',
             'customer_dob',
-            'customer_points',
         ]
         widgets = {
             'customer_name': forms.TextInput(attrs={
@@ -57,12 +56,6 @@ class CustomerForm(forms.ModelForm):
                 'placeholder': '2000-01-01',
                 'type': 'date',
             }),
-            'customer_points': forms.TextInput(attrs={
-                'class': 'form-control',
-                'id': 'customer_points',
-                'placeholder': 'Enter points of the customer',
-                'type': 'number',
-            })
         }
 
 

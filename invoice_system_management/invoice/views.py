@@ -138,7 +138,6 @@ def create_invoice(request):
     if request.method == 'POST':
         form = InvoiceForm(request.POST)
         formset = InvoiceDetailFormSet(request.POST)
-
         if form.is_valid():
             invoice = Invoice.objects.create(customer=form.cleaned_data.get('customer'),
                                              date=form.cleaned_data.get('date'))
@@ -148,11 +147,22 @@ def create_invoice(request):
                 product = form.cleaned_data.get('product')
                 amount = form.cleaned_data.get('amount')
                 if product and amount:
+                    # Sum each row
                     sum = float(product.product_price) * float(amount)
+                    # Sum of total invoice
                     total += sum
                     InvoiceDetail(invoice=invoice,
                                   product=product,
                                   amount=amount).save()
+            # Pointing the customer
+            points = 0
+            if total > 1000:
+                points += total / 1000
+            invoice.customer.customer_points = round(points)
+            # Save the points to Customer table
+            invoice.customer.save()
+
+            # Save the invoice
             invoice.total = total
             invoice.save()
             return redirect('view_invoice')
