@@ -7,12 +7,27 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <label class="m-0 font-weight-bold text-primary">Are you sure want to delete invoice?</label>
+                <label class="m-0 font-weight-bold text-primary">Confirm</label>
             </div>
             <!-- Card Body -->
-            <div class="card-body">
-
-            </div>
+            <form action="{% url 'delete_invoice' invoice.id %}" method="post">
+                {% csrf_token %}
+                <div class="card-body">
+                    <h5 style="text-align: center; padding-bottom: 1em"><b>Are you sure to delete this invoice?</b></h5>
+                    <div class="row" style="width: 50%; margin: auto">
+                        <div class="col">
+                            <a href="{% url 'view_invoice' %}" class="btn btn-success"
+                               style="width: 100%; height: 100%; border-radius: 0">
+                                Cancel
+                            </a>
+                        </div>
+                        <div class="col">
+                            <input class="btn btn-danger" style="width: 100%; height: 100%; border-radius: 0"
+                                   type="submit" name="delete-invoice" value="Yes">
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

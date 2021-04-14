@@ -233,15 +233,26 @@ def view_invoice_detail(request, pk):
     return render(request, 'invoice/view_invoice_detail.html', context)
 
 
-def delete_invoice(request):
+# Delete invoice
+def delete_invoice(request, pk):
     total_product = Product.objects.count()
     total_customer = Customer.objects.count()
     total_invoice = Invoice.objects.count()
+
+    invoice = Invoice.objects.get(id=pk)
+    invoice_detail = InvoiceDetail.objects.filter(invoice=invoice)
+    if request.method == 'POST':
+        invoice_detail.delete()
+        invoice.delete()
+        return redirect('view_invoice')
 
     context = {
         'total_product': total_product,
         'total_customer': total_customer,
         'total_invoice': total_invoice,
+
+        'invoice': invoice,
+        'invoice_detail': invoice_detail,
     }
 
     return render(request, 'invoice/delete_invoice.html', context)
