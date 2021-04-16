@@ -55,7 +55,6 @@
 {% block custom_js %}
 <script>
     function cloneMore(selector, type) {
-        console.log('hello2');
         var newElement = $(selector).clone(true);
         var total = $('#id_' + type + '-TOTAL_FORMS').val();
         newElement.find(':input').each(function () {
@@ -73,7 +72,6 @@
     }
 
     $('#add_more').click(function () {
-        console.log('hello1');
         cloneMore('div.table:last', 'form');
     });
 </script>

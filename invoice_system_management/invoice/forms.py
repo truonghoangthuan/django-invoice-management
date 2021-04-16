@@ -97,7 +97,7 @@ class InvoiceDetailForm(forms.ModelForm):
             'amount': forms.TextInput(attrs={
                 'class': 'form-control',
                 'id': 'invoice_detail_amount',
-                'placeholder': 'Enter amount of the product',
+                'placeholder': '0',
                 'type': 'number',
             })
         }
