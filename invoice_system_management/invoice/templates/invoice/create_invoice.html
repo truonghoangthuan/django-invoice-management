@@ -24,16 +24,25 @@
                     {{ formset.management_form }}
                     {% for form in formset %}
                     <div class="table">
-                        <table class="no_error">
-                            {{ form.as_table }}
+                        <table class="table">
+                            <tr>
+                                <td style="border: 0; padding: 0 0.5em 0 0; width: 80%">
+                                    <label class="form-label" for="invoice_detail_product">Product name</label>
+                                    {{form.product}}
+                                </td>
+                                <td style="border: 0; padding: 0 0 0 0.5em;">
+                                    <label class="form-label" for="invoice_detail_amount">Amounts</label>
+                                    {{form.amount}}
+                                </td>
+                            </tr>
                         </table>
                     </div>
                     {% endfor %}
                     <div class="mb-3 d-flex justify-content-center">
-                        <input class="btn btn-outline-warning" style="margin: 0 1em 0 1em; width: 40%" type="button"
-                               value="Add More" id="add_more">
+                        <input class="btn btn-outline-warning add-form-row" style="margin: 0 1em 0 1em; width: 40%"
+                            type="button" value="Add more product" id="add_more">
                         <input class="btn btn-outline-success" style="margin: 0 1em 0 1em; width: 40%" type="submit"
-                               name="create-invoice">
+                            name="create-invoice">
                     </div>
                 </form>
             </div>
@@ -41,4 +50,31 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block custom_js %}
+<script>
+    function cloneMore(selector, type) {
+        console.log('hello2');
+        var newElement = $(selector).clone(true);
+        var total = $('#id_' + type + '-TOTAL_FORMS').val();
+        newElement.find(':input').each(function () {
+            var name = $(this).attr('name').replace('-' + (total - 1) + '-', '-' + total + '-');
+            var id = 'id_' + name;
+            $(this).attr({ 'name': name, 'id': id }).val('').removeAttr('checked');
+        });
+        newElement.find('label').each(function () {
+            var newFor = $(this).attr('for').replace('-' + (total - 1) + '-', '-' + total + '-');
+            $(this).attr('for', newFor);
+        });
+        total++;
+        $('#id_' + type + '-TOTAL_FORMS').val(total);
+        $(selector).after(newElement);
+    }
+
+    $('#add_more').click(function () {
+        console.log('hello1');
+        cloneMore('div.table:last', 'form');
+    });
+</script>
 {% endblock %}
