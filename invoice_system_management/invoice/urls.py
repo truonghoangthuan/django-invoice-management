@@ -13,7 +13,6 @@ urlpatterns = [
     path('create_invoice/', views.create_invoice, name='create_invoice'),
     path('view_invoice/', views.view_invoice, name='view_invoice'),
 
-    path('create_invoice_detail/', views.create_invoice_detail, name='create_invoice_detail'),
     path('view_invoice_detail/<int:pk>/', views.view_invoice_detail, name='view_invoice_detail'),
 
     path('delete_invoice/<int:pk>/', views.delete_invoice, name='delete_invoice'),

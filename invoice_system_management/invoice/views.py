@@ -197,32 +197,7 @@ def view_invoice(request):
     return render(request, 'invoice/view_invoice.html', context)
 
 
-# Invoice detail view
-
-
-def create_invoice_detail(request):
-    total_product = Product.objects.count()
-    total_customer = Customer.objects.count()
-    total_invoice = Invoice.objects.count()
-
-    invoice_detail = InvoiceDetailForm()
-    if request.method == 'POST':
-        invoice_detail = InvoiceDetailForm(request.POST)
-        if invoice_detail.is_valid():
-            invoice_detail.save()
-            return redirect('create_invoice')
-
-    context = {
-        'total_product': total_product,
-        'total_customer': total_customer,
-        'total_invoice': total_invoice,
-
-        'invoice_detail': invoice_detail,
-    }
-
-    return render(request, 'invoice/create_invoice_detail.html', context)
-
-
+# Detail view of invoices
 def view_invoice_detail(request, pk):
     total_product = Product.objects.count()
     total_customer = Customer.objects.count()
