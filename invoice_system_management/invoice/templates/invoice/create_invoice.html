@@ -23,28 +23,22 @@
                     </div>
                     {{ formset.management_form }}
                     {% for form in formset %}
-                    <div class="row">
-                        <div class="col">
-                            <div class="mb-3">
-                                <label class="form-label" for="invoice_detail_product">Product name</label>
-                                {{form.product}}
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="mb-3">
-                                <label class="form-label" for="invoice_detail_amount">Amounts</label>
-                                {{form.amount}}
-                            </div>
-                        </div>
+                    <div class="table">
+                        <table class="no_error">
+                            {{ form.as_table }}
+                        </table>
                     </div>
                     {% endfor %}
-                    <div class="mb-3">
-                        <input class="btn btn-outline-primary" style="width: 100%; height: 100%; border-radius: 0"
-                               type="submit" name="create-invoice">
+                    <div class="mb-3 d-flex justify-content-center">
+                        <input class="btn btn-outline-warning" style="margin: 0 1em 0 1em; width: 40%" type="button"
+                               value="Add More" id="add_more">
+                        <input class="btn btn-outline-success" style="margin: 0 1em 0 1em; width: 40%" type="submit"
+                               name="create-invoice">
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}
