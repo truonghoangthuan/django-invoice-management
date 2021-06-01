@@ -226,6 +226,32 @@ def delete_invoice(request, pk):
     return render(request, 'invoice/delete_invoice.html', context)
 
 
+# Edit customer
+def edit_customer(request, pk):
+    total_product = Product.objects.count()
+    total_customer = Customer.objects.count()
+    total_invoice = Invoice.objects.count()
+
+    customer = Customer.objects.get(id=pk)
+    form = CustomerForm(instance=customer)
+
+    if request.method == 'POST':
+        customer = CustomerForm(request.POST, instance=customer)
+        if customer.is_valid():
+            customer.save()
+            return redirect('view_customer')
+
+    context = {
+        'total_product': total_product,
+        'total_customer': total_customer,
+        'total_invoice': total_invoice,
+
+        'form': form,
+    }
+
+    return render(request, 'invoice/create_customer.html', context)
+
+
 # Delete customer
 def delete_customer(request, pk):
     total_product = Product.objects.count()
@@ -233,6 +259,7 @@ def delete_customer(request, pk):
     total_invoice = Invoice.objects.count()
 
     customer = Customer.objects.get(id=pk)
+
     if request.method == 'POST':
         customer.delete()
         return redirect('view_customer')
@@ -255,6 +282,7 @@ def delete_product(request, pk):
     total_invoice = Invoice.objects.count()
 
     product = Product.objects.get(id=pk)
+
     if request.method == 'POST':
         product.delete()
         return redirect('view_product')
