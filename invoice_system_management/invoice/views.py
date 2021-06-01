@@ -1,4 +1,3 @@
-from django.forms import inlineformset_factory, formset_factory
 from django.shortcuts import render, redirect
 
 from .forms import *
@@ -18,22 +17,6 @@ def base(request):
     }
 
     return render(request, 'invoice/base/base.html', context)
-
-
-# Home view
-
-
-def index(request):
-    total_product = Product.objects.count()
-    total_customer = Customer.objects.count()
-    total_invoice = Invoice.objects.count()
-
-    context = {
-        'total_product': total_product,
-        'total_customer': total_customer,
-        'total_invoice': total_invoice,
-    }
-    return render(request, 'invoice/index.html', context)
 
 
 # Product view
@@ -241,3 +224,47 @@ def delete_invoice(request, pk):
     }
 
     return render(request, 'invoice/delete_invoice.html', context)
+
+
+# Delete customer
+def delete_customer(request, pk):
+    total_product = Product.objects.count()
+    total_customer = Customer.objects.count()
+    total_invoice = Invoice.objects.count()
+
+    customer = Customer.objects.get(id=pk)
+    if request.method == 'POST':
+        customer.delete()
+        return redirect('view_customer')
+
+    context = {
+        'total_product': total_product,
+        'total_customer': total_customer,
+        'total_invoice': total_invoice,
+
+        'customer': customer,
+    }
+
+    return render(request, 'invoice/delete_customer.html', context)
+
+
+# Delete customer
+def delete_product(request, pk):
+    total_product = Product.objects.count()
+    total_customer = Customer.objects.count()
+    total_invoice = Invoice.objects.count()
+
+    product = Product.objects.get(id=pk)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('view_product')
+
+    context = {
+        'total_product': total_product,
+        'total_customer': total_customer,
+        'total_invoice': total_invoice,
+
+        'product': product,
+    }
+
+    return render(request, 'invoice/delete_product.html', context)
