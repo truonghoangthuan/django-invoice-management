@@ -246,7 +246,7 @@ def edit_customer(request, pk):
         'total_customer': total_customer,
         'total_invoice': total_invoice,
 
-        'form': form,
+        'customer': form,
     }
 
     return render(request, 'invoice/create_customer.html', context)
@@ -275,7 +275,33 @@ def delete_customer(request, pk):
     return render(request, 'invoice/delete_customer.html', context)
 
 
-# Delete customer
+# Edit product
+def edit_product(request, pk):
+    total_product = Product.objects.count()
+    total_customer = Customer.objects.count()
+    total_invoice = Invoice.objects.count()
+
+    product = Product.objects.get(id=pk)
+    form = ProductForm(instance=product)
+
+    if request.method == 'POST':
+        customer = CustomerForm(request.POST, instance=product)
+        if customer.is_valid():
+            product.save()
+            return redirect('view_product')
+
+    context = {
+        'total_product': total_product,
+        'total_customer': total_customer,
+        'total_invoice': total_invoice,
+
+        'product': form,
+    }
+
+    return render(request, 'invoice/create_product.html', context)
+
+
+# Delete product
 def delete_product(request, pk):
     total_product = Product.objects.count()
     total_customer = Customer.objects.count()
