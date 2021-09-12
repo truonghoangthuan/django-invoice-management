@@ -3,7 +3,7 @@ from .models import *
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['id', 'product_name', 'product_price', 'product_unit']
+    list_display = ['id', 'product_name', 'product_price', 'product_unit', 'product_is_delete']
 
 
 class CustomerAdmin(admin.ModelAdmin):

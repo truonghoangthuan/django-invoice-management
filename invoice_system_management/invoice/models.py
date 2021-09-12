@@ -6,6 +6,7 @@ class Product(models.Model):
     product_name = models.CharField(max_length=255)
     product_price = models.FloatField(default=0)
     product_unit = models.CharField(max_length=255)
+    product_is_delete = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.product_name)
