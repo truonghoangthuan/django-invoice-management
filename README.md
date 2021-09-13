@@ -36,4 +36,4 @@ If you want to contribute to this project you can email me - trhoangthuan@gmail.
 ## License
 
 This project is licensed under the MIT License - see
-the [LICENSE.md](https://github.com/antkaynak/Keyist-Ecommerce/blob/master/LICENSE) for details.
+the [LICENSE.md](https://github.com/truonghoangthuan/django-invoice-management/blob/master/LICENSE) for details.
