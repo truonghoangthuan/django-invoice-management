@@ -1,2 +1,4 @@
 venv/
 .idea/
+invoice/__pycache__/
+invoice_system_management/__pycache__/
