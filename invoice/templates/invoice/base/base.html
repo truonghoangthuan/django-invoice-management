@@ -33,14 +33,14 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'home' %}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon">
+                    <img src="{% static '/img/logo.png' %}" alt="logo" width="50px" height="50px">
                 </div>
-                <div class="sidebar-brand-text mx-3">MY STORE</div>
+                
             </a>
 
             <!-- Divider -->
@@ -66,13 +66,15 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{% url 'create_product' %}">Add</a>
+                        <a class="collapse-item" href="{% url 'upload_product_excel' %}">Upload Excel</a>
+
                         <a class="collapse-item" href="{% url 'view_product' %}">View</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            {% comment %} <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-user-circle"></i>
@@ -85,7 +87,7 @@
                         <a class="collapse-item" href="{% url 'view_customer' %}">View</a>
                     </div>
                 </div>
-            </li>
+            </li> {% endcomment %}
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -98,6 +100,9 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{% url 'create_invoice' %}">Add</a>
                         <a class="collapse-item" href="{% url 'view_invoice' %}">View</a>
+                        <a class="collapse-item" href="{% url 'download_all_invoice' %}">Download</a>
+                        <a class="collapse-item" href="{% url 'delete_all_invoice' %}">Delete</a>
+
                     </div>
                 </div>
             </li>
@@ -111,11 +116,11 @@
             </div>
 
             <!-- Sidebar Message -->
-            <div class="sidebar-card">
+            {% comment %} <div class="sidebar-card">
                 <img class="sidebar-card-illustration mb-2" src="{% static 'img/undraw_rocket.svg' %}" alt="">
                 <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
                 <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div>
+            </div> {% endcomment %}
 
         </ul>
         <!-- End of Sidebar -->
@@ -160,7 +165,7 @@
                         </div>
 
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        {% comment %} <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -176,7 +181,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> {% endcomment %}
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -208,7 +213,7 @@
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Total income
                                             </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_income}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

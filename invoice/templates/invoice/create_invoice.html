@@ -13,14 +13,25 @@
             <div class="card-body">
                 <form method="post" action="">
                     {% csrf_token %}
+                    
                     <div class="mb-3">
-                        <label class="form-label" for="invoice_date">Date</label>
-                        {{form.date}}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="invoice_customer_name">Customer name</label>
+                        <label class="form-label" for="invoice_customer">Customer name</label>
                         {{form.customer}}
                     </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="invoice_contact">Contact</label>
+                        {{form.contact}}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="invoice_comments">Comments</label>
+                        {{form.comments}}
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label" for="invoice_email">Email</label>
+                        {{form.email}}
+                    </div>
+                    
                     {{ formset.management_form }}
                     {% for form in formset %}
                     <div class="table">
