@@ -46,6 +46,7 @@ def download_all(request):
         "invoice_contact": [],
         "invoice_email": [],
         "invoice_comments": [],
+        'invoice_discount': [],
         "product_name": [],
         "product_price": [],
         "product_unit": [],
@@ -61,6 +62,7 @@ def download_all(request):
         invoiceAndProduct["invoice_customer"].append(invoice.customer)
         invoiceAndProduct["invoice_contact"].append(invoice.contact)
         invoiceAndProduct["invoice_email"].append(invoice.email)
+        invoiceAndProduct["invoice_discount"].append(invoice.discount)
         invoiceAndProduct["invoice_comments"].append(invoice.comments)
         invoiceAndProduct["product_name"].append(product.product_name)
         invoiceAndProduct["product_price"].append(product.product_price)
@@ -214,6 +216,7 @@ def create_invoice(request):
                 contact=form.cleaned_data.get("contact"),
                 email=form.cleaned_data.get("email"),
                 date=form.cleaned_data.get("date"),
+                discount=form.cleaned_data.get("discount"),
             )
         if formset.is_valid():
             total = 0
@@ -222,9 +225,9 @@ def create_invoice(request):
                 amount = form.cleaned_data.get("amount")
                 if product and amount:
                     # Sum each row
-                    sum = float(product.product_price) * float(amount)
+                    sum1 = float(product.product_price) * float(amount)
                     # Sum of total invoice
-                    total += sum
+                    total += sum1
                     InvoiceDetail(
                         invoice=invoice, product=product, amount=amount
                     ).save()
@@ -237,7 +240,7 @@ def create_invoice(request):
             # invoice.customer.save()
 
             # Save the invoice
-            invoice.total = total
+            invoice.total = total*(1-float(invoice.discount)/100)
             invoice.save()
             return redirect("view_invoice")
 

@@ -33,6 +33,7 @@ class Invoice(models.Model):
     contact = models.CharField(
         max_length=255, default='', blank=True, null=True)
     email = models.EmailField(default='', blank=True, null=True)
+    discount = models.FloatField(default=0)
     comments = models.TextField(default='', blank=True, null=True)
     total = models.FloatField(default=0)
 

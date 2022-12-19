@@ -31,6 +31,10 @@
                         <label class="form-label" for="invoice_email">Email</label>
                         {{form.email}}
                     </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="invoice_discount">DISCOUNT</label>
+                        {{form.discount}}
+                    </div>
                     
                     {{ formset.management_form }}
                     {% for form in formset %}

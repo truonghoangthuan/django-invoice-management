@@ -67,6 +67,7 @@ class InvoiceForm(forms.ModelForm):
             'comments',
             'contact',
             'email',
+            'discount',
         ]
         widgets = {
             'customer': forms.TextInput(attrs={
@@ -88,6 +89,11 @@ class InvoiceForm(forms.ModelForm):
                 'class': 'form-control',
                 'id': 'invoice_comments',
                 'placeholder': 'Enter comments',
+            }),
+            'discount': forms.TextInput(attrs={
+                'class': 'form-control',
+                'id': 'invoice_discount',
+                'placeholder': 'Enter discount',
             }),
 
         }
